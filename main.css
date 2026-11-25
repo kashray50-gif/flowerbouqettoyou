@@ -1,0 +1,278 @@
+/* ==========================================================================
+   MAIN.CSS — Global Theme Tokens, Atmosphere, Typography & Stage Layout
+   ========================================================================== */
+
+:root {
+  /* Default Theme: Midnight Lavender */
+  --bg-top: #070612;
+  --bg-mid: #120e29;
+  --bg-bottom: #1e1642;
+  --accent-glow: #c084fc;
+  --accent-soft: #e9d5ff;
+  --accent-deep: #581c87;
+
+  /* Flower Colors */
+  --petal-primary-light: #f3e8ff;
+  --petal-primary-mid: #c084fc;
+  --petal-primary-dark: #6b21a8;
+  --petal-secondary-light: #fae8ff;
+  --petal-secondary-mid: #e879f9;
+  --petal-secondary-dark: #86198f;
+  --flower-core: #fde047;
+  --flower-core-shadow: #ca8a04;
+
+  /* Foliage Colors */
+  --leaf-light: #6ee7b7;
+  --leaf-mid: #10b981;
+  --leaf-dark: #064e3b;
+  --stem-color: #047857;
+
+  /* Wrapping Paper & Ribbon */
+  --paper-outer: #7e22ce;
+  --paper-outer-edge: #a855f7;
+  --paper-inner: #f5f3ff;
+  --paper-translucent: rgba(216, 180, 254, 0.28);
+  --ribbon-light: #d8b4fe;
+  --ribbon-mid: #9333ea;
+  --ribbon-dark: #4c1d95;
+
+  /* Animation Physics */
+  --bloom-scale: 1;
+  --breeze-speed: 5.5s;
+  --breeze-angle: 2.2deg;
+}
+
+/* Theme Variations */
+body.theme-velvet-rose {
+  --bg-top: #120409;
+  --bg-mid: #290916;
+  --bg-bottom: #421024;
+  --accent-glow: #fb7185;
+  --accent-soft: #ffe4e6;
+  --accent-deep: #881337;
+  --petal-primary-light: #ffe4e6;
+  --petal-primary-mid: #fb7185;
+  --petal-primary-dark: #9f1239;
+  --petal-secondary-light: #fce7f3;
+  --petal-secondary-mid: #f472b6;
+  --petal-secondary-dark: #9d174d;
+  --paper-outer: #9f1239;
+  --paper-outer-edge: #f43f5e;
+  --paper-inner: #fff1f2;
+  --paper-translucent: rgba(254, 205, 211, 0.28);
+  --ribbon-light: #fda4af;
+  --ribbon-mid: #e11d48;
+  --ribbon-dark: #881337;
+}
+
+body.theme-golden-sunset {
+  --bg-top: #120a03;
+  --bg-mid: #291607;
+  --bg-bottom: #45230a;
+  --accent-glow: #fbbf24;
+  --accent-soft: #fef3c7;
+  --accent-deep: #92400e;
+  --petal-primary-light: #fef3c7;
+  --petal-primary-mid: #fbbf24;
+  --petal-primary-dark: #b45309;
+  --petal-secondary-light: #ffedd5;
+  --petal-secondary-mid: #fb923c;
+  --petal-secondary-dark: #c2410c;
+  --paper-outer: #b45309;
+  --paper-outer-edge: #f59e0b;
+  --paper-inner: #fffbeb;
+  --paper-translucent: rgba(253, 230, 138, 0.28);
+  --ribbon-light: #fcd34d;
+  --ribbon-mid: #d97706;
+  --ribbon-dark: #78350f;
+}
+
+body.theme-celestial-blue {
+  --bg-top: #030914;
+  --bg-mid: #081833;
+  --bg-bottom: #0f2952;
+  --accent-glow: #60a5fa;
+  --accent-soft: #dbeafe;
+  --accent-deep: #1e3a8a;
+  --petal-primary-light: #dbeafe;
+  --petal-primary-mid: #60a5fa;
+  --petal-primary-dark: #1d4ed8;
+  --petal-secondary-light: #e0f2fe;
+  --petal-secondary-mid: #38bdf8;
+  --petal-secondary-dark: #0369a1;
+  --paper-outer: #1d4ed8;
+  --paper-outer-edge: #3b82f6;
+  --paper-inner: #eff6ff;
+  --paper-translucent: rgba(191, 219, 254, 0.28);
+  --ribbon-light: #93c5fd;
+  --ribbon-mid: #2563eb;
+  --ribbon-dark: #1e3a8a;
+}
+
+body.theme-emerald-mist {
+  --bg-top: #03120e;
+  --bg-mid: #07261e;
+  --bg-bottom: #0d3d31;
+  --accent-glow: #34d399;
+  --accent-soft: #d1fae5;
+  --accent-deep: #065f46;
+  --petal-primary-light: #d1fae5;
+  --petal-primary-mid: #34d399;
+  --petal-primary-dark: #047857;
+  --petal-secondary-light: #ccfbf1;
+  --petal-secondary-mid: #2dd4bf;
+  --petal-secondary-dark: #0f766e;
+  --paper-outer: #047857;
+  --paper-outer-edge: #10b981;
+  --paper-inner: #ecfdf5;
+  --paper-translucent: rgba(167, 243, 208, 0.28);
+  --ribbon-light: #6ee7b7;
+  --ribbon-mid: #059669;
+  --ribbon-dark: #064e3b;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: radial-gradient(circle at 50% 35%, var(--bg-bottom) 0%, var(--bg-mid) 52%, var(--bg-top) 100%);
+  color: #ffffff;
+  transition: background 0.9s ease;
+  user-select: none;
+}
+
+#ambient-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+#particle-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 15;
+  overflow: hidden;
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2.2rem 1rem 1.5rem;
+  z-index: 5;
+}
+
+/* Header & Glowing Title */
+.hero-header {
+  text-align: center;
+  z-index: 20;
+  animation: fadeSlideDown 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.subtitle-tag {
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+  opacity: 0.78;
+  margin-bottom: 0.35rem;
+}
+
+.glow-title {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(2.1rem, 4.5vw, 3.6rem);
+  color: #ffffff;
+  letter-spacing: 0.03em;
+  text-shadow:
+    0 0 12px var(--accent-glow),
+    0 0 28px var(--accent-glow),
+    0 0 54px var(--accent-deep);
+  outline: none;
+  cursor: text;
+  transition: text-shadow 0.5s ease, transform 0.3s ease;
+}
+
+.glow-title:hover {
+  transform: scale(1.02);
+}
+
+.dedication-note {
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 300;
+  letter-spacing: 0.04em;
+}
+
+/* Bouquet Viewport */
+.bouquet-viewport {
+  position: relative;
+  width: min(92vw, 560px);
+  height: min(74vh, 640px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1200px;
+}
+
+.bouquet-aura {
+  position: absolute;
+  width: 390px;
+  height: 390px;
+  top: 6%;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  opacity: 0.26;
+  filter: blur(36px);
+  animation: pulseAura 5s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.bouquet-floor-shadow {
+  position: absolute;
+  bottom: 2%;
+  width: 220px;
+  height: 28px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.68) 0%, transparent 75%);
+  filter: blur(6px);
+}
+
+@keyframes fadeSlideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-22px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseAura {
+  0% {
+    transform: scale(0.92);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(1.12);
+    opacity: 0.36;
+  }
+}

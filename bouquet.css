@@ -1,0 +1,493 @@
+/* ==========================================================================
+   BOUQUET.CSS — Wrapping Paper, Silk Ribbon, Petals, Foliage & Keyframes
+   ========================================================================== */
+
+.bouquet-rig {
+  position: relative;
+  width: 420px;
+  height: 580px;
+  transform-origin: 50% 92%;
+  animation: gentleSway var(--breeze-speed) ease-in-out infinite alternate;
+}
+
+@keyframes gentleSway {
+  0% {
+    transform: rotate(calc(var(--breeze-angle) * -1)) translateY(0px);
+  }
+  50% {
+    transform: rotate(0deg) translateY(-4px);
+  }
+  100% {
+    transform: rotate(var(--breeze-angle)) translateY(0px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   1. Back Wrapping Paper Cone & Pleats
+   -------------------------------------------------------------------------- */
+.wrapper-back {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.paper-sheet {
+  position: absolute;
+  bottom: 34px;
+  left: 50%;
+  transform-origin: bottom center;
+  border-radius: 18px 18px 4px 4px;
+  box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.35), 0 12px 30px rgba(0, 0, 0, 0.45);
+  transition: background 0.7s ease;
+}
+
+.paper-center-back {
+  width: 250px;
+  height: 450px;
+  margin-left: -125px;
+  background: linear-gradient(180deg, var(--paper-outer-edge) 0%, var(--paper-outer) 58%, #1e1035 100%);
+  clip-path: polygon(10% 0%, 90% 0%, 62% 100%, 38% 100%);
+  animation: unfoldPaperCenter 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.paper-left-back {
+  width: 220px;
+  height: 430px;
+  margin-left: -110px;
+  background: linear-gradient(155deg, var(--paper-outer-edge) 0%, var(--paper-outer) 65%, #190d2e 100%);
+  clip-path: polygon(0% 6%, 82% 0%, 60% 100%, 38% 100%);
+  transform: rotate(-16deg) translateX(-28px);
+  animation: unfoldPaperLeft 1.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.paper-right-back {
+  width: 220px;
+  height: 430px;
+  margin-left: -110px;
+  background: linear-gradient(205deg, var(--paper-outer-edge) 0%, var(--paper-outer) 65%, #190d2e 100%);
+  clip-path: polygon(18% 0%, 100% 6%, 62% 100%, 40% 100%);
+  transform: rotate(16deg) translateX(28px);
+  animation: unfoldPaperRight 1.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.paper-inner-lining {
+  position: absolute;
+  bottom: 52px;
+  left: 50%;
+  width: 226px;
+  height: 405px;
+  margin-left: -113px;
+  background: linear-gradient(180deg, var(--paper-inner) 0%, rgba(255, 255, 255, 0.72) 55%, rgba(200, 180, 240, 0.25) 100%);
+  clip-path: polygon(8% 2%, 92% 2%, 60% 100%, 40% 100%);
+  opacity: 0.9;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+}
+
+@keyframes unfoldPaperCenter {
+  from { transform: scaleY(0.35); opacity: 0; }
+  to   { transform: scaleY(1); opacity: 1; }
+}
+
+@keyframes unfoldPaperLeft {
+  from { transform: rotate(0deg) scaleY(0.4); opacity: 0; }
+  to   { transform: rotate(-16deg) translateX(-28px) scaleY(1); opacity: 1; }
+}
+
+@keyframes unfoldPaperRight {
+  from { transform: rotate(0deg) scaleY(0.4); opacity: 0; }
+  to   { transform: rotate(16deg) translateX(28px) scaleY(1); opacity: 1; }
+}
+
+/* --------------------------------------------------------------------------
+   2. Foliage, Eucalyptus Leaves & Baby's Breath Sprigs
+   -------------------------------------------------------------------------- */
+.foliage-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.botanical-leaf {
+  position: absolute;
+  width: 34px;
+  height: 76px;
+  transform-origin: bottom center;
+  background: linear-gradient(135deg, var(--leaf-light) 0%, var(--leaf-mid) 52%, var(--leaf-dark) 100%);
+  border-radius: 50% 0 50% 0;
+  box-shadow: inset 2px 2px 6px rgba(255, 255, 255, 0.35), 0 6px 14px rgba(0, 0, 0, 0.35);
+  animation: leafGrow 1.4s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+}
+
+.botanical-leaf::after {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 48%;
+  width: 2px;
+  height: 82%;
+  background: rgba(255, 255, 255, 0.32);
+  transform: rotate(14deg);
+  border-radius: 2px;
+}
+
+.eucalyptus-stem {
+  position: absolute;
+  width: 4px;
+  height: 130px;
+  background: linear-gradient(to top, var(--leaf-dark), var(--leaf-mid));
+  transform-origin: bottom center;
+  border-radius: 4px;
+}
+
+.eucalyptus-disc {
+  position: absolute;
+  width: 22px;
+  height: 18px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #a7f3d0, var(--leaf-mid) 65%, var(--leaf-dark));
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+.babys-breath-sprig {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  transform-origin: bottom center;
+  animation: leafGrow 1.6s ease-out backwards;
+}
+
+.gypso-dot {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 30%, var(--accent-soft) 100%);
+  box-shadow: 0 0 8px #ffffff, 0 0 12px var(--accent-glow);
+}
+
+@keyframes leafGrow {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 0) scale(0.1) rotate(var(--rot, 0deg));
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1) rotate(var(--rot, 0deg));
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. Multi-Layered Procedural Flowers
+   -------------------------------------------------------------------------- */
+.flowers-cluster {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+}
+
+.flower-head {
+  position: absolute;
+  width: 96px;
+  height: 96px;
+  transform: translate(-50%, -50%) scale(calc(var(--flower-scale, 1) * var(--bloom-scale, 1)));
+  transform-origin: center center;
+  cursor: pointer;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+  animation: bloomEntrance 1.5s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  animation-delay: var(--delay, 0.2s);
+}
+
+.flower-head:hover {
+  filter: brightness(1.16) drop-shadow(0 0 16px var(--accent-glow));
+  z-index: 30 !important;
+}
+
+@keyframes bloomEntrance {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -35%) scale(0.05) rotate(-45deg);
+  }
+  70% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(calc(var(--flower-scale, 1) * 1.08)) rotate(6deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(calc(var(--flower-scale, 1) * var(--bloom-scale, 1))) rotate(0deg);
+  }
+}
+
+.petal {
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+  transform-origin: center bottom;
+  border-radius: 50% 50% 35% 35% / 65% 65% 35% 35%;
+  box-shadow:
+    inset 0 4px 10px rgba(255, 255, 255, 0.55),
+    inset 0 -8px 14px rgba(0, 0, 0, 0.28),
+    0 4px 10px rgba(0, 0, 0, 0.25);
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.petal-outer {
+  width: 34px;
+  height: 48px;
+  margin-left: -17px;
+  background: radial-gradient(circle at 50% 22%, var(--petal-primary-light) 0%, var(--petal-primary-mid) 58%, var(--petal-primary-dark) 100%);
+  transform: rotate(var(--angle)) translateY(-6px) scale(var(--bloom-scale, 1));
+}
+
+.petal-mid {
+  width: 28px;
+  height: 38px;
+  margin-left: -14px;
+  background: radial-gradient(circle at 50% 25%, var(--petal-secondary-light) 0%, var(--petal-secondary-mid) 60%, var(--petal-secondary-dark) 100%);
+  transform: rotate(var(--angle)) translateY(-4px) scale(calc(0.85 + (var(--bloom-scale, 1) - 1) * 0.6));
+}
+
+.petal-inner {
+  width: 20px;
+  height: 26px;
+  margin-left: -10px;
+  background: radial-gradient(circle at 50% 30%, #ffffff 0%, var(--petal-primary-mid) 65%, var(--petal-primary-dark) 100%);
+  transform: rotate(var(--angle)) translateY(-2px);
+}
+
+/* Tulip / Bell Flower Variant (inspired by clip-path ellipse geometry) */
+.flower-tulip .petal-outer {
+  width: 32px;
+  height: 54px;
+  margin-left: -16px;
+  clip-path: ellipse(50% 50% at 50% 50%);
+  border-radius: 0;
+}
+
+/* Star Lily Variant */
+.flower-lily .petal-outer {
+  width: 24px;
+  height: 54px;
+  margin-left: -12px;
+  border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%;
+}
+
+/* Luminous Flower Center / Stamen */
+.flower-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffffff 0%, var(--flower-core) 45%, var(--flower-core-shadow) 100%);
+  box-shadow: 0 0 12px var(--flower-core), inset 0 -2px 4px rgba(0, 0, 0, 0.35);
+  z-index: 5;
+}
+
+.flower-center::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px dotted rgba(255, 255, 255, 0.8);
+  animation: spinSlow 14s linear infinite;
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* --------------------------------------------------------------------------
+   4. Front Translucent Paper Collar & Folds
+   -------------------------------------------------------------------------- */
+.wrapper-front {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.paper-fold {
+  position: absolute;
+  bottom: 30px;
+  width: 175px;
+  height: 295px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-top: 1px solid rgba(255, 255, 255, 0.45);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.25);
+  transition: background 0.7s ease;
+}
+
+.paper-fold-left {
+  left: 52px;
+  background: linear-gradient(135deg, var(--paper-translucent) 0%, var(--paper-outer) 85%);
+  clip-path: polygon(0% 14%, 100% 42%, 86% 100%, 56% 100%);
+  transform-origin: bottom right;
+}
+
+.paper-fold-right {
+  right: 52px;
+  background: linear-gradient(225deg, var(--paper-translucent) 0%, var(--paper-outer) 85%);
+  clip-path: polygon(0% 42%, 100% 14%, 44% 100%, 14% 100%);
+  transform-origin: bottom left;
+}
+
+.paper-collar {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  width: 112px;
+  height: 155px;
+  margin-left: -56px;
+  background: linear-gradient(180deg, var(--paper-outer-edge) 0%, var(--paper-outer) 60%, #1a0c30 100%);
+  clip-path: polygon(8% 0%, 92% 0%, 76% 100%, 24% 100%);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   5. Silk Ribbon Bow & Flowing Tails
+   -------------------------------------------------------------------------- */
+.ribbon-assembly {
+  position: absolute;
+  bottom: 138px;
+  left: 50%;
+  width: 180px;
+  height: 140px;
+  margin-left: -90px;
+  z-index: 12;
+  pointer-events: none;
+}
+
+.ribbon-band {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  width: 78px;
+  height: 22px;
+  margin-left: -39px;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--ribbon-dark), var(--ribbon-light) 35%, var(--ribbon-mid) 65%, var(--ribbon-dark));
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+}
+
+.ribbon-loop {
+  position: absolute;
+  top: -12px;
+  width: 64px;
+  height: 44px;
+  border-radius: 50% 50% 40% 40%;
+  background: radial-gradient(circle at 40% 30%, var(--ribbon-light), var(--ribbon-mid) 65%, var(--ribbon-dark));
+  box-shadow: inset 0 3px 8px rgba(255, 255, 255, 0.45), 0 6px 14px rgba(0, 0, 0, 0.4);
+}
+
+.ribbon-loop-left {
+  left: 24px;
+  transform: rotate(-24deg);
+}
+
+.ribbon-loop-right {
+  right: 24px;
+  transform: rotate(24deg);
+}
+
+.ribbon-knot {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  width: 26px;
+  height: 26px;
+  margin-left: -13px;
+  border-radius: 8px;
+  background: radial-gradient(circle at 35% 30%, var(--ribbon-light), var(--ribbon-mid) 70%, var(--ribbon-dark));
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  z-index: 3;
+}
+
+.ribbon-tail {
+  position: absolute;
+  top: 20px;
+  width: 24px;
+  height: 118px;
+  background: linear-gradient(180deg, var(--ribbon-mid) 0%, var(--ribbon-light) 45%, var(--ribbon-dark) 100%);
+  clip-path: polygon(12% 0%, 88% 0%, 100% 100%, 50% 86%, 0% 100%);
+  transform-origin: top center;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.35);
+}
+
+.ribbon-tail-left {
+  left: 62px;
+  transform: rotate(14deg);
+  animation: ribbonFlutterLeft 4s ease-in-out infinite alternate;
+}
+
+.ribbon-tail-right {
+  right: 62px;
+  transform: rotate(-14deg);
+  animation: ribbonFlutterRight 4.4s ease-in-out infinite alternate;
+}
+
+@keyframes ribbonFlutterLeft {
+  0%   { transform: rotate(12deg) skewX(0deg); }
+  100% { transform: rotate(19deg) skewX(3deg); }
+}
+
+@keyframes ribbonFlutterRight {
+  0%   { transform: rotate(-12deg) skewX(0deg); }
+  100% { transform: rotate(-19deg) skewX(-3deg); }
+}
+
+/* --------------------------------------------------------------------------
+   6. Hanging Gift Tag
+   -------------------------------------------------------------------------- */
+.gift-tag {
+  position: absolute;
+  bottom: 92px;
+  left: 62%;
+  z-index: 13;
+  transform-origin: top left;
+  animation: tagSwing 4.8s ease-in-out infinite alternate;
+}
+
+.tag-string {
+  width: 2px;
+  height: 24px;
+  background: rgba(255, 255, 255, 0.65);
+  margin-left: 10px;
+  transform: rotate(-18deg);
+}
+
+.tag-card {
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.tag-icon {
+  color: var(--accent-glow);
+  font-size: 0.85rem;
+}
+
+.tag-text {
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  font-size: 0.75rem;
+  color: #ffffff;
+  letter-spacing: 0.03em;
+}
+
+@keyframes tagSwing {
+  0%   { transform: rotate(-4deg); }
+  100% { transform: rotate(6deg); }
+}

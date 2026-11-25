@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flowers For You — Interactive Botanical Bouquet Animation</title>
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="stylesheet" href="styles/bouquet.css" />
+  <link rel="stylesheet" href="styles/particles.css" />
+  <link rel="stylesheet" href="styles/controls.css" />
+</head>
+<body class="theme-midnight-lavender">
+  <!-- Ambient Starfield & Bokeh Canvas -->
+  <canvas id="ambient-canvas" aria-hidden="true"></canvas>
+
+  <!-- Floating Fireflies & Pollen Layer -->
+  <div id="particle-layer" aria-hidden="true"></div>
+
+  <!-- Main Stage -->
+  <main class="stage" id="stage">
+    <!-- Glowing Header Typography -->
+    <header class="hero-header">
+      <p class="subtitle-tag">A Digital Botanical Keepsake</p>
+      <h1 class="glow-title" id="bouquet-title" contenteditable="true" spellcheck="false" title="Click to customize message">Flowers For You</h1>
+      <p class="dedication-note" id="dedication-note">Crafted with CSS geometry, procedural petals &amp; luminous light</p>
+    </header>
+
+    <!-- Interactive Bouquet Viewport -->
+    <section class="bouquet-viewport" id="bouquet-viewport" aria-label="Animated Flower Bouquet">
+      <!-- Radial Aura Behind Bouquet -->
+      <div class="bouquet-aura"></div>
+      <div class="bouquet-floor-shadow"></div>
+
+      <!-- Main Bouquet Wrapper & Flowers Container -->
+      <div class="bouquet-rig" id="bouquet-rig">
+        <!-- Back Wrapping Paper Layer -->
+        <div class="wrapper-back">
+          <div class="paper-sheet paper-left-back"></div>
+          <div class="paper-sheet paper-center-back"></div>
+          <div class="paper-sheet paper-right-back"></div>
+          <div class="paper-inner-lining"></div>
+        </div>
+
+        <!-- Foliage & Baby's Breath (Gypsophila) Layer -->
+        <div class="foliage-layer" id="foliage-layer"></div>
+
+        <!-- Procedural & Layered Flowers Container -->
+        <div class="flowers-cluster" id="flowers-cluster"></div>
+
+        <!-- Front Translucent & Silk Wrapping Paper Layer -->
+        <div class="wrapper-front">
+          <div class="paper-fold paper-fold-left"></div>
+          <div class="paper-fold paper-fold-right"></div>
+          <div class="paper-collar"></div>
+        </div>
+
+        <!-- Silk Ribbon & Bow -->
+        <div class="ribbon-assembly" id="ribbon-assembly">
+          <div class="ribbon-band"></div>
+          <div class="ribbon-loop ribbon-loop-left"></div>
+          <div class="ribbon-loop ribbon-loop-right"></div>
+          <div class="ribbon-tail ribbon-tail-left"></div>
+          <div class="ribbon-tail ribbon-tail-right"></div>
+          <div class="ribbon-knot"></div>
+        </div>
+
+        <!-- Hanging Gift Tag -->
+        <div class="gift-tag" id="gift-tag">
+          <div class="tag-string"></div>
+          <div class="tag-card">
+            <span class="tag-icon">✦</span>
+            <span class="tag-text" id="tag-text">For Someone Special</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Studio Controls Dock -->
+    <aside class="studio-dock" id="studio-dock" aria-label="Bouquet Customization Controls">
+      <button class="dock-toggle" id="dock-toggle" title="Toggle Studio Panel">
+        <span class="toggle-icon">✿</span>
+        <span class="toggle-label">Customize</span>
+      </button>
+
+      <div class="dock-panel" id="dock-panel">
+        <div class="panel-header">
+          <h2>Bouquet Studio</h2>
+          <button class="btn-icon" id="btn-replay" title="Replay Bloom Animation">↻ Replay</button>
+        </div>
+
+        <!-- Color Palette Presets -->
+        <div class="control-group">
+          <label class="control-label">Color Theme</label>
+          <div class="theme-swatches" id="theme-swatches">
+            <button class="swatch active" data-theme="midnight-lavender" style="--c1:#b388ff;--c2:#7c4dff;" title="Midnight Lavender">Lavender</button>
+            <button class="swatch" data-theme="velvet-rose" style="--c1:#ff80ab;--c2:#c51162;" title="Velvet Rose">Rose</button>
+            <button class="swatch" data-theme="golden-sunset" style="--c1:#ffd180;--c2:#ff6d00;" title="Golden Sunset">Sunset</button>
+            <button class="swatch" data-theme="celestial-blue" style="--c1:#82b1ff;--c2:#2962ff;" title="Celestial Blue">Blue</button>
+            <button class="swatch" data-theme="emerald-mist" style="--c1:#a7ffeb;--c2:#00bfa5;" title="Emerald Mist">Mint</button>
+          </div>
+        </div>
+
+        <!-- Interactive Sliders -->
+        <div class="control-group">
+          <div class="slider-row">
+            <label for="slider-bloom">Bloom Openness</label>
+            <span id="val-bloom">100%</span>
+          </div>
+          <input type="range" id="slider-bloom" min="15" max="125" value="100" />
+        </div>
+
+        <div class="control-group">
+          <div class="slider-row">
+            <label for="slider-breeze">Gentle Breeze</label>
+            <span id="val-breeze">45%</span>
+          </div>
+          <input type="range" id="slider-breeze" min="0" max="100" value="45" />
+        </div>
+
+        <div class="control-group">
+          <div class="slider-row">
+            <label for="slider-sparkles">Firefly Density</label>
+            <span id="val-sparkles">60%</span>
+          </div>
+          <input type="range" id="slider-sparkles" min="0" max="100" value="60" />
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="control-actions">
+          <button class="btn-action" id="btn-scatter-petals">✨ Burst Petals</button>
+          <button class="btn-action" id="btn-add-bloom">+ Add Rose</button>
+          <button class="btn-action" id="btn-toggle-music">♪ Ambient Chime</button>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Scripts -->
+  <script src="scripts/palette-engine.js"></script>
+  <script src="scripts/audio-synth.js"></script>
+  <script src="scripts/particle-system.js"></script>
+  <script src="scripts/bouquet-builder.js"></script>
+  <script src="scripts/main.js"></script>
+</body>
+</html>

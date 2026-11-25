@@ -1,0 +1,61 @@
+/* ==========================================================================
+   PARTICLES.CSS — Floating Fireflies, Shimmer Dust & Falling Petals
+   ========================================================================== */
+
+.firefly {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0%, var(--accent-glow) 55%, transparent 100%);
+  box-shadow: 0 0 10px var(--accent-glow), 0 0 20px var(--accent-glow);
+  pointer-events: none;
+  opacity: 0;
+  animation: fireflyFloat var(--dur, 8s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes fireflyFloat {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.4);
+  }
+  25% {
+    opacity: 0.9;
+  }
+  50% {
+    transform: translate(var(--dx1, 30px), var(--dy1, -60px)) scale(1.1);
+  }
+  75% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--dx2, -20px), var(--dy2, -130px)) scale(0.3);
+  }
+}
+
+.falling-petal {
+  position: absolute;
+  width: 16px;
+  height: 22px;
+  border-radius: 50% 0 50% 50%;
+  background: linear-gradient(135deg, var(--petal-primary-light), var(--petal-primary-mid));
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+  z-index: 25;
+  animation: petalDrift var(--fall-dur, 4.5s) cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes petalDrift {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translate(var(--sway-x, 80px), 180px) rotate(190deg) scale(0.95);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--end-x, -40px), 420px) rotate(380deg) scale(0.7);
+  }
+}
